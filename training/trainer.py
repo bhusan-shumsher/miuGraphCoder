@@ -4,17 +4,27 @@ import torch.optim as optim
 from torch_geometric.data import DataLoader
 from tqdm import tqdm
 import numpy as np
+# Remove the ".." and use sys.path
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ..models.fingerprint import TopologyFingerprintExtractor
-from ..models.hypernetwork import HyperNetwork
-from ..models.codebook import WeightCodebook
-from ..models.gnn import TinyGNN
-from ..models.adapter import AdapterEnhancedGNN
+from models.fingerprint import TopologyFingerprintExtractor
+from models.hypernetwork import HyperNetwork
+from models.codebook import WeightCodebook
+from models.gnn import TinyGNN
+from models.adapter import AdapterEnhancedGNN
+
+# from ..models.fingerprint import TopologyFingerprintExtractor
+# from ..models.hypernetwork import HyperNetwork
+# from ..models.codebook import WeightCodebook
+# from ..models.gnn import TinyGNN
+# from ..models.adapter import AdapterEnhancedGNN
 
 class MiuGraphCoderTrainer:
     """Trainer for the complete µGraphCoder system."""
     
-    def __init__(self, device='mps' if torch.backends.mps.is_available() else 'cpu'):
+    def __init__(self, device='cpu'):
         self.device = torch.device(device)
         print(f"Using device: {self.device}")
         
